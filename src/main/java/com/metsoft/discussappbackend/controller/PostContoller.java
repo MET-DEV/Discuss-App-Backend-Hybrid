@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("")
+@RequestMapping("/api/v1/posts")
 @RestController
 public class PostContoller {
     private final PostRepository postRepository;

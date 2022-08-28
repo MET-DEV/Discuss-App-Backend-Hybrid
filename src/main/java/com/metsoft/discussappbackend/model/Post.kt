@@ -2,10 +2,7 @@ package com.metsoft.discussappbackend.model
 
 import org.hibernate.annotations.GenericGenerator
 import java.time.LocalDateTime
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 data class Post (
@@ -16,9 +13,19 @@ data class Post (
         @Column(name = "creation_date")
         val creationDate: LocalDateTime?,
         @Column(name = "post_message")
-        val postMessage:String?
+        val postMessage:String?,
+
+        @ManyToOne()
+        @JoinColumn(name = "post_tag_id")
+        val postTag:PostTag?,
+
         ){
-        constructor(postMessage: String,creationDate: LocalDateTime):this("",creationDate,postMessage)
+        constructor(postMessage: String,creationDate: LocalDateTime,postTag: PostTag):this(
+                "",
+                postMessage=postMessage,
+                creationDate=creationDate,
+                postTag=postTag
+        )
 
 
 }
